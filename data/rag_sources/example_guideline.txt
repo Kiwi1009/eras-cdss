@@ -1,0 +1,159 @@
+ERAS Clinical Decision Support - Example Guideline
+
+===========================================
+POSTOPERATIVE DELIRIUM (POD) ASSESSMENT
+===========================================
+
+1. RISK FACTORS
+   - Age > 65 years
+   - Pre-existing cognitive impairment
+   - History of delirium
+   - Severe illness (ASA score ≥ 3)
+   - Prolonged surgery (> 2 hours)
+   - Sleep disturbance
+   - Sensory impairment
+
+2. ASSESSMENT TOOLS
+   
+   Nu-DESC (Nursing Delirium Screening Scale):
+   - Disorientation: 0-2 points
+   - Inappropriate behavior: 0-2 points
+   - Inappropriate communication: 0-2 points
+   - Illusions/hallucinations: 0-2 points
+   - Psychomotor retardation: 0-2 points
+   - Total score: 0-10 (≥2 indicates delirium)
+
+   CAM-ICU (Confusion Assessment Method for ICU):
+   - Acute onset or fluctuating course
+   - Inattention
+   - Disorganized thinking
+   - Altered level of consciousness
+
+3. PREVENTION STRATEGIES
+   - Early mobilization
+   - Cognitive stimulation
+   - Sleep protocol
+   - Adequate pain control
+   - Avoid deliriogenic medications
+   - Maintain normal sleep-wake cycle
+   - Provide orientation cues (clock, calendar)
+   - Ensure hearing aids/glasses are available
+
+4. MANAGEMENT
+   - Non-pharmacological interventions first
+   - Identify and treat underlying causes
+   - Consider low-dose haloperidol if needed
+   - Regular reassessment
+
+===========================================
+POSTOPERATIVE NAUSEA AND VOMITING (PONV)
+===========================================
+
+1. RISK FACTORS (Apfel Score)
+   - Female gender: 1 point
+   - Non-smoker: 1 point
+   - History of PONV or motion sickness: 1 point
+   - Postoperative opioid use: 1 point
+   
+   Risk levels:
+   - 0-1 points: Low risk (10-20%)
+   - 2 points: Moderate risk (40%)
+   - 3-4 points: High risk (60-80%)
+
+2. PROPHYLAXIS PROTOCOL
+   
+   Low risk (0-1 points):
+   - No prophylaxis or single agent
+   
+   Moderate risk (2 points):
+   - Single agent: dexamethasone 4-8 mg IV
+   - Or: ondansetron 4 mg IV
+   
+   High risk (3-4 points):
+   - Combination therapy:
+     * Dexamethasone 4-8 mg IV (at induction)
+     * Ondansetron 4 mg IV (at end of surgery)
+     * Consider adding: droperidol 0.625-1.25 mg IV
+                      or metoclopramide 10 mg IV
+
+3. RESCUE THERAPY
+   - If prophylaxis fails, use different class of antiemetic
+   - Ondansetron 4 mg IV (if not used for prophylaxis)
+   - Metoclopramide 10 mg IV
+   - Promethazine 12.5-25 mg IV/IM
+
+4. SPECIAL CONSIDERATIONS
+   - Avoid ondansetron in patients with QT prolongation
+   - Dexamethasone contraindicated in uncontrolled diabetes
+   - Consider scopolamine patch for high-risk patients
+
+===========================================
+CHEST TUBE MANAGEMENT
+===========================================
+
+1. INDICATIONS FOR REMOVAL
+   - Drainage < 200 ml/24 hours (or < 2 ml/kg/24h)
+   - No air leak for 24 hours
+   - Good lung expansion on chest X-ray
+   - Patient clinically stable
+   - No active bleeding
+
+2. REMOVAL PROCEDURE
+   - Pre-medicate for pain if needed
+   - Position patient (sitting or supine)
+   - Remove sutures
+   - Instruct patient to perform Valsalva maneuver
+   - Quickly remove tube during expiration
+   - Apply occlusive dressing
+   - Monitor for complications
+
+3. POST-REMOVAL MONITORING
+   - Check for pneumothorax (chest X-ray if indicated)
+   - Monitor respiratory status
+   - Check dressing for drainage
+   - Assess for subcutaneous emphysema
+
+4. CONTRAINDICATIONS FOR REMOVAL
+   - Active air leak
+   - Drainage > 200 ml/24h
+   - Incomplete lung expansion
+   - Recent bleeding
+   - Patient on positive pressure ventilation
+
+5. COMPLICATIONS
+   - Pneumothorax
+   - Subcutaneous emphysema
+   - Re-accumulation of fluid/air
+   - Wound infection
+
+===========================================
+GENERAL ERAS PRINCIPLES
+===========================================
+
+1. PREOPERATIVE
+   - Patient education
+   - Prehabilitation when possible
+   - Optimize comorbidities
+   - Avoid prolonged fasting
+   - Carbohydrate loading 2-4 hours before surgery
+
+2. INTRAOPERATIVE
+   - Minimally invasive techniques when possible
+   - Goal-directed fluid therapy
+   - Normothermia maintenance
+   - Multimodal analgesia
+   - Avoid excessive fluid administration
+
+3. POSTOPERATIVE
+   - Early mobilization (within 24 hours)
+   - Early enteral nutrition
+   - Multimodal pain management
+   - Avoid unnecessary drains/tubes
+   - Early removal of catheters
+   - Regular assessment and protocol-driven care
+
+4. OUTCOMES
+   - Reduced length of stay
+   - Lower complication rates
+   - Improved patient satisfaction
+   - Faster return to normal function

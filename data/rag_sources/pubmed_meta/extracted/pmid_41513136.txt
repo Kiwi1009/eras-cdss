@@ -1,0 +1,7 @@
+Title: Beyond compliance: Patient risk, ERAS adherence, and postoperative outcomes through explainable machine learning.
+
+Authors: Ripollés-Melchor J, Espinosa ÁV, Abad-Motos A, Abad-Gurumeta A, Galán-Menéndez P
+
+Published: Rev Esp Anestesiol Reanim (Engl Ed) (2026 Jan)
+
+PMID: 41513136
