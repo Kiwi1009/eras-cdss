@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERAS CDSS - 術後加速康復臨床決策輔助系統</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0c4a6e 100%); }
+        .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white/95 backdrop-blur border-b border-slate-200">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white">
+                        <i class="fas fa-stethoscope"></i>
+                    </span>
+                    <span class="text-xl font-bold text-slate-900">ERAS CDSS</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="/static/cosmos-framework.html" class="text-sm font-medium text-slate-600 hover:text-blue-600">Research: ERAS Multi-Agent (EN)</a>
+                    <a href="/static/index.html" class="text-sm font-medium text-blue-600 hover:text-blue-700">
+                        直接進入系統 <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="gradient-bg text-white py-16 sm:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+                    術後加速康復臨床決策輔助系統
+                </h1>
+                <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-8">
+                    Enhanced Recovery After Surgery — Clinical Decision Support System
+                </p>
+                <p class="text-lg text-slate-200 max-w-2xl mx-auto mb-10">
+                    結合 RAG 知識庫與多代理決策，針對 PONV、術後譫妄、胸管移除等情境，提供可引用文獻的臨床建議。
+                </p>
+                <a href="/static/index.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-blue-700 font-semibold shadow-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-play-circle"></i>
+                    開始使用
+                </a>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-bold text-slate-900 text-center mb-12">系統特色</h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card-hover rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 mb-2">多代理決策</h3>
+                        <p class="text-slate-600 text-sm">外科、麻醉、護理三角色代理並行分析，再由仲裁者整合輸出，貼近多專科共識。</p>
+                    </div>
+                    <div class="card-hover rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                            <i class="fas fa-database text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 mb-2">RAG 知識庫</h3>
+                        <p class="text-slate-600 text-sm">FAISS 檢索、版本控制與增量更新，每次建議皆可追溯至臨床指南與文獻片段。</p>
+                    </div>
+                    <div class="card-hover rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
+                        <div class="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 mb-2">引用強制 (S2)</h3>
+                        <p class="text-slate-600 text-sm">輸出必須引用檢索結果，不合格時自動修復重試，確保建議有據可查。</p>
+                    </div>
+                    <div class="card-hover rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-4">
+                            <i class="fas fa-clipboard-list text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 mb-2">三大臨床情境</h3>
+                        <p class="text-slate-600 text-sm">PONV（Koivuranta）、術後譫妄（Nu-DESC）、胸管移除決策，欄位驗證與建議一體完成。</p>
+                    </div>
+                    <div class="card-hover rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-4">
+                            <i class="fas fa-file-alt text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 mb-2">可追溯日誌</h3>
+                        <p class="text-slate-600 text-sm">每次請求產生 trace_id，完整保存請求、檢索結果、代理與仲裁輸出，便於稽核與除錯。</p>
+                    </div>
+                    <div class="card-hover rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center mb-4">
+                            <i class="fas fa-plug text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-900 mb-2">可插拔 LLM</h3>
+                        <p class="text-slate-600 text-sm">支援 Ollama、vLLM、TensorRT-LLM，以環境變數切換後端，方便在地部署。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scenarios -->
+        <section class="py-16 bg-slate-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-bold text-slate-900 text-center mb-12">支援情境</h2>
+                <div class="grid sm:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 text-center">
+                        <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-purple-100 text-purple-600 mb-4">
+                            <i class="fas fa-pills"></i>
+                        </span>
+                        <h3 class="font-semibold text-slate-900 mb-2">PONV</h3>
+                        <p class="text-slate-600 text-sm">術後噁心嘔吐風險評估與預防建議（Koivuranta 評分）</p>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 text-center">
+                        <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 text-blue-600 mb-4">
+                            <i class="fas fa-brain"></i>
+                        </span>
+                        <h3 class="font-semibold text-slate-900 mb-2">POD</h3>
+                        <p class="text-slate-600 text-sm">術後譫妄篩檢與護理建議（Nu-DESC 量表）</p>
+                    </div>
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 text-center">
+                        <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-100 text-green-600 mb-4">
+                            <i class="fas fa-lungs"></i>
+                        </span>
+                        <h3 class="font-semibold text-slate-900 mb-2">胸管移除</h3>
+                        <p class="text-slate-600 text-sm">非數位胸管移除時機與安全條件建議</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 bg-white">
+            <div class="max-w-2xl mx-auto px-4 text-center">
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">準備好了嗎？</h2>
+                <p class="text-slate-600 mb-8">從 30 筆 Demo 病人中選擇一筆帶入表單，或自行輸入資料進行評估。</p>
+                <a href="/static/index.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition shadow-lg">
+                    <i class="fas fa-arrow-right"></i>
+                    進入評估系統
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-auto py-8 border-t border-slate-200 bg-slate-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm">
+                <p>ERAS CDSS — 本系統為決策輔助工具，臨床決策需由醫療人員最終確認。</p>
+                <p class="mt-2">
+                    <a href="/static/cosmos-framework.html" class="text-blue-600 hover:underline mr-4">ERAS GPU Multi-Agent Research (EN)</a>
+                    <a href="https://github.com/Kiwi1009/eras-cdss" class="text-blue-600 hover:underline">Kiwi1009/eras-cdss</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

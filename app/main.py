@@ -29,7 +29,10 @@ if os.path.exists(static_dir):
 
 @app.get("/")
 async def root():
-    """Serve frontend index page."""
+    """Serve introduction/landing page."""
+    intro_path = os.path.join(static_dir, "intro.html")
+    if os.path.exists(intro_path):
+        return FileResponse(intro_path)
     index_path = os.path.join(static_dir, "index.html")
     if os.path.exists(index_path):
         return FileResponse(index_path)

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPU-Accelerated Multi-Agent LLMs for ERAS | ERAS CDSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-50 text-gray-800">
+    <div class="min-h-screen">
+        <header class="bg-white border-b border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+                <a href="/" class="flex items-center gap-2 text-slate-700 hover:text-blue-600">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to ERAS CDSS</span>
+                </a>
+                <a href="/static/index.html" class="text-sm text-blue-600 hover:underline">Evaluation System</a>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+            <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <!-- Title block -->
+                <div class="bg-gradient-to-br from-slate-800 to-slate-700 text-white px-6 sm:px-10 py-10">
+                    <p class="text-sm text-slate-300 uppercase tracking-wider mb-2">Research</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold leading-tight">
+                        GPU-Accelerated Multi-Agent Large Language Models for Enhanced Recovery After Surgery Protocols
+                    </h1>
+                    <p class="mt-2 text-lg text-blue-100">
+                        Multi-Agent Dialogue System with RAG for Enhanced Recovery After Surgery (ERAS) in Thoracic Procedures
+                    </p>
+                    <p class="mt-4 text-slate-300 text-sm">
+                        Hsing-Hsien Wu, I-Ni Wu, Ya-Chuan Chen, Hsiang-Wei Hu, Dawn Chen<br>
+                        Division of Thoracic Surgery, Tainan Municipal Hospital, Show Chwan Healthcare System, Taiwan;<br>
+                        Department of Artificial Intelligence in Healthcare, International Academia of Biomedical Innovation Technology, Reno, Nevada, United States
+                    </p>
+                </div>
+
+                <div class="px-6 sm:px-10 py-8 space-y-8">
+                    <!-- Abstract -->
+                    <section>
+                        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 mb-4">Abstract</h2>
+                        <p class="text-slate-700 leading-relaxed"><strong>Background:</strong> Enhanced Recovery After Surgery (ERAS) protocols require real-time, personalized clinical decision support, but traditional CPU-based rule engines suffer from high latency and low throughput, limiting multi-patient concurrent management capabilities.</p>
+                        <p class="text-slate-700 leading-relaxed mt-4"><strong>Objective:</strong> This study evaluates the performance gains of GPU-accelerated Large Language Model (LLM) inference systems in ERAS clinical decision-making and validates their feasibility in real-world clinical scenarios.</p>
+                        <p class="text-slate-700 leading-relaxed mt-4"><strong>Methods:</strong> We developed a multi-agent LLM system powered by NVIDIA RTX 5090 GPU, integrating a hybrid Retrieval-Augmented Generation (RAG) architecture, compared against traditional CPU rule engines. The system addresses three core ERAS use cases: Postoperative Nausea and Vomiting (PONV) prevention, Postoperative Delirium (POD) checklists, and chest tube removal decisions. Through microbenchmarks, stress testing, and clinical task accuracy evaluation, we quantified system performance and clinical value.</p>
+                        <p class="text-slate-700 leading-relaxed mt-4"><strong>Results:</strong> The GPU-accelerated system achieved significant performance improvements over the CPU baseline: 2.9× reduction in mean latency (650 ms vs 1900 ms), 2.4× reduction in P95 latency (850 ms vs 2050 ms), and 7× increase in maximum throughput (3.5 QPS vs 0.5 QPS). Under 16-patient concurrent stress testing, P95 latency remained under 2.1 seconds with GPU utilization at 60–80% and memory usage at 16–18 GB (70–75% VRAM). Clinical task accuracy reached 95%, demonstrating flexible edge-case handling.</p>
+                        <p class="text-slate-700 leading-relaxed mt-4"><strong>Conclusion:</strong> A single RTX 5090 GPU enables bedside real-time response (P95 &lt;1 s) while supporting 8–16 concurrent patient management, providing a viable solution for resource-constrained on-premise deployments. The open-source software stack and clear cost-benefit analysis (4–10 month ROI) demonstrate clinical deployment potential. Future directions include TensorRT-LLM quantization, cuVS GPU vector retrieval acceleration, multi-GPU scaling, and multimodal RAG integration.</p>
+                    </section>
+
+                    <!-- System Architecture -->
+                    <section>
+                        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 mb-4">System Architecture: Five-Layer Modular Design</h2>
+                        <p class="text-slate-700 leading-relaxed mb-4">The system integrates EHR data via FHIR R4, retrieves clinical knowledge through hybrid RAG (BM25 + semantic search), processes queries using GPU-accelerated LLM inference (RTX 5090, GPT-OSS-20B), coordinates multi-agent reasoning (Surgeon, Anesthesia, Nurse), and outputs real-time ERAS recommendations.</p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <span class="font-semibold text-slate-700 w-28 flex-shrink-0">Data Layer</span>
+                                <span class="text-slate-600">FHIR-compliant EHR integration | ERAS guidelines indexing | HIPAA/GDPR synthetic data</span>
+                            </div>
+                            <div class="flex gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <span class="font-semibold text-slate-700 w-28 flex-shrink-0">RAG Layer</span>
+                                <span class="text-slate-600">BM25 keyword + semantic embedding retrieval | ChromaDB (CPU) → cuVS (GPU roadmap)</span>
+                            </div>
+                            <div class="flex gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <span class="font-semibold text-slate-700 w-28 flex-shrink-0">Inference Layer</span>
+                                <span class="text-slate-600">GPT-OSS-20B (FP16, 8K context) | Ollama server | RTX 5090 (24 GB, 21,760 CUDA cores)</span>
+                            </div>
+                            <div class="flex gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <span class="font-semibold text-slate-700 w-28 flex-shrink-0">Multi-Agent Layer</span>
+                                <span class="text-slate-600">3 specialized agents → debate → arbitrator → consensus decision</span>
+                            </div>
+                            <div class="flex gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                                <span class="font-semibold text-slate-700 w-28 flex-shrink-0">Output Layer</span>
+                                <span class="text-slate-600">PONV prevention | POD checklist | Chest tube decisions (all &lt;1s latency)</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Results: Latency -->
+                    <section>
+                        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 mb-4">Results: Latency Performance</h2>
+                        <p class="text-slate-600 text-sm mb-4">Table 1: CPU vs GPU Latency Comparison (4k context, 256 output tokens)</p>
+                        <div class="overflow-x-auto rounded-lg border border-slate-200">
+                            <table class="w-full text-sm">
+                                <thead class="bg-slate-100">
+                                    <tr>
+                                        <th class="text-left p-3 font-semibold text-slate-900">Metric</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">CPU Rule Engine</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">GPU LLM (RTX 5090)</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">Speedup</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-t border-slate-200"><td class="p-3">Mean Latency</td><td class="p-3">1,900 ms</td><td class="p-3">650 ms</td><td class="p-3">2.9×</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">P50 Latency</td><td class="p-3">1,850 ms</td><td class="p-3">620 ms</td><td class="p-3">3.0×</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">P95 Latency</td><td class="p-3">2,050 ms</td><td class="p-3">850 ms</td><td class="p-3">2.4×</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">P99 Latency</td><td class="p-3">2,200 ms</td><td class="p-3">950 ms</td><td class="p-3">2.3×</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-slate-600 text-sm mt-4"><strong>Observations:</strong> 1k tokens: smaller GPU advantage (480 ms vs 1200 ms), bottleneck in RAG retrieval. 8k tokens: expanded GPU advantage (820 ms vs 2400 ms), Transformer attention benefits from Tensor Cores.</p>
+                    </section>
+
+                    <!-- Throughput -->
+                    <section>
+                        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 mb-4">Throughput and Concurrent Performance</h2>
+                        <div class="overflow-x-auto rounded-lg border border-slate-200">
+                            <table class="w-full text-sm">
+                                <thead class="bg-slate-100">
+                                    <tr>
+                                        <th class="text-left p-3 font-semibold text-slate-900">Concurrent Requests</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">P95 Latency (ms)</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">QPS</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">GPU Utilization (%)</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">VRAM Usage (GB)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-t border-slate-200"><td class="p-3">1</td><td class="p-3">620</td><td class="p-3">1.6</td><td class="p-3">45–55</td><td class="p-3">12–14</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">4</td><td class="p-3">850</td><td class="p-3">4.7</td><td class="p-3">65–75</td><td class="p-3">15–17</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">8</td><td class="p-3">1,200</td><td class="p-3">6.7</td><td class="p-3">75–85</td><td class="p-3">17–19</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">16</td><td class="p-3">2,100</td><td class="p-3">7.6</td><td class="p-3">80–90</td><td class="p-3">18–20</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-slate-600 text-sm mt-4"><strong>Observations:</strong> VRAM usage stable at 16–18 GB (67–75%); compute utilization 60–80%; no memory leaks or resource contention observed.</p>
+                    </section>
+
+                    <!-- Clinical Task Accuracy -->
+                    <section>
+                        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 mb-4">Clinical Task Accuracy</h2>
+                        <div class="overflow-x-auto rounded-lg border border-slate-200">
+                            <table class="w-full text-sm">
+                                <thead class="bg-slate-100">
+                                    <tr>
+                                        <th class="text-left p-3 font-semibold text-slate-900">Use Case</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">CPU Rule Engine</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">GPU LLM</th>
+                                        <th class="text-left p-3 font-semibold text-slate-900">Improvement</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-t border-slate-200"><td class="p-3">PONV Prevention</td><td class="p-3">85%</td><td class="p-3">96%</td><td class="p-3">+11%</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">POD Checklist</td><td class="p-3">78%</td><td class="p-3">94%</td><td class="p-3">+16%</td></tr>
+                                    <tr class="border-t border-slate-200"><td class="p-3">Chest Tube Removal</td><td class="p-3">90%</td><td class="p-3">95%</td><td class="p-3">+5%</td></tr>
+                                    <tr class="border-t border-slate-200 font-semibold"><td class="p-3">Average</td><td class="p-3">84%</td><td class="p-3">95%</td><td class="p-3">+11%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Discussion -->
+                    <section>
+                        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-2 mb-4">Discussion</h2>
+                        <p class="text-slate-700 leading-relaxed">On a single on-prem RTX 5090, our ERAS assistant achieves bedside-ready performance. Mean latency fell from ~1900 to ~650 ms and P95 from ~2050 to ~850 ms; throughput reached ~3.5 QPS, supporting 8–16 patients concurrently. Across 30 ERAS prompts (PONV, POD, chest-tube), keyword-based accuracy improved from 84% to 95% with traceable rationales. Stress tests showed near-linear scaling to 8-way concurrency and stable operation (VRAM 70–85%, 65–75 °C). These results demonstrate reliable, auditable real-time support.</p>
+                    </section>
+
+                    <!-- Keywords -->
+                    <section class="pt-4 border-t border-slate-200">
+                        <p class="text-slate-600 text-sm">
+                            <strong>Keywords:</strong> GPU Acceleration, Large Language Models, Enhanced Recovery After Surgery, Multi-Agent Systems, Clinical Decision Support, On-Premise Deployment
+                        </p>
+                    </section>
+                </div>
+            </article>
+
+            <p class="mt-8 text-center text-slate-500 text-sm">
+                <a href="/" class="text-blue-600 hover:underline">← Back to ERAS CDSS Home</a>
+            </p>
+        </main>
+
+        <footer class="max-w-4xl mx-auto px-4 py-6 text-center text-slate-500 text-sm border-t border-slate-200 mt-10">
+            ERAS CDSS · <a href="https://github.com/Kiwi1009/eras-cdss" class="text-blue-600 hover:underline">GitHub</a>
+        </footer>
+    </div>
+</body>
+</html>

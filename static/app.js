@@ -5,27 +5,27 @@ const API_BASE_URL = window.location.origin;
 // Scenario field configurations
 const SCENARIO_FIELDS = {
     PONV: [
-        { name: 'female', label: '女性', type: 'checkbox', required: true },
-        { name: 'non_smoker', label: '非吸菸者', type: 'checkbox', required: true },
-        { name: 'hx_ponv', label: 'PONV 病史', type: 'checkbox', required: true },
-        { name: 'hx_motion_sickness', label: '暈動症病史', type: 'checkbox', required: true },
-        { name: 'surgery_duration_min', label: '手術時長 (分鐘)', type: 'number', required: true, min: 0 }
+        { name: 'female', label: 'Female', type: 'checkbox', required: true },
+        { name: 'non_smoker', label: 'Non-smoker', type: 'checkbox', required: true },
+        { name: 'hx_ponv', label: 'History of PONV', type: 'checkbox', required: true },
+        { name: 'hx_motion_sickness', label: 'History of motion sickness', type: 'checkbox', required: true },
+        { name: 'surgery_duration_min', label: 'Surgery duration (min)', type: 'number', required: true, min: 0 }
     ],
     POD: [
-        { name: 'nu_desc.disorientation', label: '定向障礙 (0-2)', type: 'number', required: true, min: 0, max: 2 },
-        { name: 'nu_desc.inappropriate_behavior', label: '不當行為 (0-2)', type: 'number', required: true, min: 0, max: 2 },
-        { name: 'nu_desc.inappropriate_communication', label: '不當溝通 (0-2)', type: 'number', required: true, min: 0, max: 2 },
-        { name: 'nu_desc.illusions', label: '錯覺/幻覺 (0-2)', type: 'number', required: true, min: 0, max: 2 },
-        { name: 'nu_desc.psychomotor_retardation', label: '精神運動遲緩 (0-2)', type: 'number', required: true, min: 0, max: 2 },
-        { name: 'surgery_duration_min', label: '手術時長 (分鐘)', type: 'number', required: true, min: 0 }
+        { name: 'nu_desc.disorientation', label: 'Disorientation (0-2)', type: 'number', required: true, min: 0, max: 2 },
+        { name: 'nu_desc.inappropriate_behavior', label: 'Inappropriate behavior (0-2)', type: 'number', required: true, min: 0, max: 2 },
+        { name: 'nu_desc.inappropriate_communication', label: 'Inappropriate communication (0-2)', type: 'number', required: true, min: 0, max: 2 },
+        { name: 'nu_desc.illusions', label: 'Illusions/hallucinations (0-2)', type: 'number', required: true, min: 0, max: 2 },
+        { name: 'nu_desc.psychomotor_retardation', label: 'Psychomotor retardation (0-2)', type: 'number', required: true, min: 0, max: 2 },
+        { name: 'surgery_duration_min', label: 'Surgery duration (min)', type: 'number', required: true, min: 0 }
     ],
     CHEST_TUBE: [
-        { name: 'air_leak_present', label: '存在氣漏', type: 'checkbox', required: true },
-        { name: 'drain_output_ml_24h', label: '24小時引流量 (ml)', type: 'number', required: true, min: 0 },
-        { name: 'fluid_quality', label: '引流液性質', type: 'select', required: true, options: ['serous', 'serosanguineous', 'bloody', 'other'] },
-        { name: 'active_bleeding_suspected', label: '疑似活動性出血', type: 'checkbox', required: true },
-        { name: 'lung_expanded', label: '肺部擴張良好', type: 'checkbox', required: true },
-        { name: 'threshold_ml_24h', label: '引流量閾值 (ml)', type: 'number', required: false, min: 0, value: 450 }
+        { name: 'air_leak_present', label: 'Air leak present', type: 'checkbox', required: true },
+        { name: 'drain_output_ml_24h', label: '24h drain output (ml)', type: 'number', required: true, min: 0 },
+        { name: 'fluid_quality', label: 'Fluid quality', type: 'select', required: true, options: ['serous', 'serosanguineous', 'bloody', 'other'] },
+        { name: 'active_bleeding_suspected', label: 'Active bleeding suspected', type: 'checkbox', required: true },
+        { name: 'lung_expanded', label: 'Lung well expanded', type: 'checkbox', required: true },
+        { name: 'threshold_ml_24h', label: 'Drain threshold (ml)', type: 'number', required: false, min: 0, value: 450 }
     ]
 };
 
@@ -51,12 +51,12 @@ async function loadPatients() {
     const errorEl = document.getElementById('patients-error');
     
     try {
-        // 使用靜態 JSON，避免 API 路徑 404
+        // Use static JSON to avoid API 404
         const url = `${API_BASE_URL}/static/patients.json`;
         const response = await fetch(url);
         const data = await response.json().catch(() => ({}));
         if (!response.ok) {
-            throw new Error(data.detail || `無法載入病人資料 (${response.status})`);
+            throw new Error(data.detail || `Failed to load patient data (${response.status})`);
         }
         const patients = Array.isArray(data) ? data : [];
         loadedPatients = patients;
@@ -66,7 +66,7 @@ async function loadPatients() {
         wrap.classList.remove('hidden');
         
         const tbody = document.getElementById('patients-tbody');
-        const scenarioLabels = { PONV: 'PONV', POD: 'POD', CHEST_TUBE: '胸管' };
+        const scenarioLabels = { PONV: 'PONV', POD: 'POD', CHEST_TUBE: 'Chest Tube' };
         
         tbody.innerHTML = patients.map((p, idx) => {
             const scenario = p.scenario || '—';
@@ -79,9 +79,9 @@ async function loadPatients() {
                     <td class="px-3 py-2 text-gray-700 max-w-xs truncate" title="${(p.question || '').replace(/"/g, '&quot;')}">${question}</td>
                     <td class="px-3 py-2 text-gray-600 max-w-xs">${summary}</td>
                     <td class="px-3 py-2 text-center">
-                        <button type="button" onclick="fillFormWithPatient(${idx})" class="text-blue-600 hover:text-blue-800 font-medium">帶入表單</button>
+                        <button type="button" onclick="fillFormWithPatient(${idx})" class="text-blue-600 hover:text-blue-800 font-medium">Fill Form</button>
                         <span class="mx-1">|</span>
-                        <button type="button" onclick="fillAndEvaluate(${idx})" class="text-green-600 hover:text-green-800 font-medium">帶入並評估</button>
+                        <button type="button" onclick="fillAndEvaluate(${idx})" class="text-green-600 hover:text-green-800 font-medium">Fill & Evaluate</button>
                     </td>
                 </tr>
             `;
@@ -90,24 +90,24 @@ async function loadPatients() {
         loading.classList.add('hidden');
         wrap.classList.add('hidden');
         errorEl.classList.remove('hidden');
-        errorEl.textContent = err.message || '載入病人清單失敗（請確認後端已啟動且 data/patients.jsonl 存在）';
+        errorEl.textContent = err.message || 'Failed to load patient list (ensure backend is running and static/patients.json exists)';
     }
 }
 
 function formatPatientSummary(fhir, scenario) {
     const parts = [];
-    if (fhir.age != null) parts.push('年齡' + fhir.age);
-    if (fhir.gender) parts.push(fhir.gender === 'F' ? '女' : '男');
+    if (fhir.age != null) parts.push('Age ' + fhir.age);
+    if (fhir.gender) parts.push(fhir.gender === 'F' ? 'F' : 'M');
     if (scenario === 'POD' && fhir.nu_desc) {
         const n = fhir.nu_desc;
         const total = (n.disorientation || 0) + (n.inappropriate_behavior || 0) + (n.inappropriate_communication || 0) + (n.illusions || n.illusions_hallucinations || 0) + (n.psychomotor_retardation || 0);
         parts.push('Nu-DESC ' + total);
     }
     if (scenario === 'PONV') {
-        if (fhir.female !== undefined) parts.push(fhir.female ? '女' : '男');
-        if (fhir.non_smoker !== undefined) parts.push(fhir.non_smoker ? '非吸菸' : '吸菸');
+        if (fhir.female !== undefined) parts.push(fhir.female ? 'F' : 'M');
+        if (fhir.non_smoker !== undefined) parts.push(fhir.non_smoker ? 'Non-smoker' : 'Smoker');
     }
-    if (scenario === 'CHEST_TUBE' && fhir.drain_output_ml_24h != null) parts.push('引流 ' + fhir.drain_output_ml_24h + 'ml');
+    if (scenario === 'CHEST_TUBE' && fhir.drain_output_ml_24h != null) parts.push('Drain ' + fhir.drain_output_ml_24h + 'ml');
     return parts.length ? parts.join(' · ') : '—';
 }
 
@@ -189,7 +189,7 @@ async function checkHealth() {
         if (data.status === 'ok') {
             statusIndicator.innerHTML = `
                 <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="text-sm text-gray-600">系統就緒 (Build: ${data.rag_current_build_id || 'N/A'})</span>
+                <span class="text-sm text-gray-600">System ready (Build: ${data.rag_current_build_id || 'N/A'})</span>
             `;
         }
     } catch (error) {
@@ -229,7 +229,7 @@ function updateDynamicFields() {
                 <select name="${field.name}" 
                     class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                     ${field.required ? 'required' : ''}>
-                    <option value="">請選擇</option>
+                    <option value="">Select...</option>
                     ${field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
                 </select>
             `;
@@ -360,7 +360,7 @@ function displayResults(data) {
     badge.textContent = scenario;
     
     // Final recommendation
-    document.getElementById('final-recommendation').textContent = data.final_recommendation || '無建議';
+    document.getElementById('final-recommendation').textContent = data.final_recommendation || 'No recommendation';
     
     // Final actions
     const actionsContainer = document.getElementById('final-actions');
@@ -372,7 +372,7 @@ function displayResults(data) {
             </div>`
         ).join('');
     } else {
-        actionsContainer.innerHTML = '<p class="text-gray-500">無建議行動</p>';
+        actionsContainer.innerHTML = '<p class="text-gray-500">No suggested actions</p>';
     }
     
     // Key reasons
@@ -382,7 +382,7 @@ function displayResults(data) {
             `<li class="text-gray-700">${reason}</li>`
         ).join('');
     } else {
-        reasonsList.innerHTML = '<li class="text-gray-500">無</li>';
+        reasonsList.innerHTML = '<li class="text-gray-500">None</li>';
     }
     
     // Risks and notes
@@ -392,7 +392,7 @@ function displayResults(data) {
             `<li class="text-gray-700">${risk}</li>`
         ).join('');
     } else {
-        risksList.innerHTML = '<li class="text-gray-500">無</li>';
+        risksList.innerHTML = '<li class="text-gray-500">None</li>';
     }
     
     // Citations
@@ -404,7 +404,7 @@ function displayResults(data) {
             <div class="citation-card bg-gray-50 rounded-lg p-4 border border-gray-200">
                 <div class="flex items-start justify-between mb-2">
                     <div class="flex-1">
-                        <span class="text-sm font-medium text-gray-900">引用 ${idx + 1}</span>
+                        <span class="text-sm font-medium text-gray-900">Citation ${idx + 1}</span>
                         <span class="text-xs text-gray-500 ml-2">${cit.source}</span>
                     </div>
                     <button onclick="toggleCitation(${idx})" class="text-blue-600 hover:text-blue-800 text-sm">
@@ -418,7 +418,7 @@ function displayResults(data) {
         `).join('');
     } else {
         citationCount.textContent = '0';
-        citationsList.innerHTML = '<p class="text-gray-500">無引用文獻</p>';
+        citationsList.innerHTML = '<p class="text-gray-500">No citations</p>';
     }
     
     // Agent decisions
@@ -431,28 +431,28 @@ function displayResults(data) {
                 <div class="border border-gray-200 rounded-lg p-4">
                     <div class="flex items-center justify-between mb-2">
                         <h4 class="font-semibold text-gray-900">${agentName}</h4>
-                        ${agent.error ? '<span class="text-xs text-red-600">有錯誤</span>' : '<span class="text-xs text-green-600">正常</span>'}
+                        ${agent.error ? '<span class="text-xs text-red-600">Error</span>' : '<span class="text-xs text-green-600">OK</span>'}
                     </div>
                     <div class="text-sm text-gray-700">
-                        <p class="mb-2"><strong>建議：</strong>${decision.recommendation || '無'}</p>
+                        <p class="mb-2"><strong>Recommendation:</strong> ${decision.recommendation || 'None'}</p>
                         ${decision.actions && decision.actions.length > 0 ? 
-                            `<p class="mb-2"><strong>行動：</strong>${decision.actions.join(', ')}</p>` : ''}
-                        ${agent.error ? `<p class="text-red-600 text-xs mt-2">錯誤：${agent.error}</p>` : ''}
+                            `<p class="mb-2"><strong>Actions:</strong> ${decision.actions.join(', ')}</p>` : ''}
+                        ${agent.error ? `<p class="text-red-600 text-xs mt-2">Error: ${agent.error}</p>` : ''}
                     </div>
                 </div>
             `;
         }).join('');
     } else {
-        agentsList.innerHTML = '<p class="text-gray-500">無代理決策資料</p>';
+        agentsList.innerHTML = '<p class="text-gray-500">No agent decision data</p>';
     }
     
     // Metrics
     const metricsDisplay = document.getElementById('metrics-display');
     if (data.metrics) {
         const metrics = [
-            { label: '延遲時間', value: `${data.metrics.latency_ms || 0} ms`, icon: 'clock' },
+            { label: 'Latency', value: `${data.metrics.latency_ms || 0} ms`, icon: 'clock' },
             { label: 'Trace ID', value: data.metrics.trace_id || 'N/A', icon: 'fingerprint' },
-            { label: '後端', value: data.metrics.backend || 'N/A', icon: 'server' },
+            { label: 'Backend', value: data.metrics.backend || 'N/A', icon: 'server' },
             { label: 'Citations', value: data.metrics.citations_count || 0, icon: 'book' }
         ];
         metricsDisplay.innerHTML = metrics.map(metric => `
